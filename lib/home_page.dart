@@ -16,24 +16,33 @@ class HomePage extends StatelessWidget {
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
           backgroundColor: const Color(0xff49C0DC),
-          title: Image.asset(
-            'assets/Projeto_logo.png',
-            height: 85,
+          title: Semantics(
+            label: "Logo do site Caminhos para um Amanhã Melhor",
+            child: Image.asset(
+              'assets/Projeto_logo.png',
+              height: 85,
+            ),
           ),
           centerTitle: true,
           leading: IconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.person_outline,
-              color: Colors.white,
+            icon: Semantics(
+              label: "Botão para ir à tela do seu perfil",
+              child: const Icon(
+                Icons.person_outline,
+                color: Colors.white,
+              ),
             ),
           ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_none_rounded,
-                color: Colors.white,
+              icon: Semantics(
+                label: "Botão para ver as suas notificações",
+                child: const Icon(
+                  Icons.notifications_none_rounded,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
@@ -68,11 +77,21 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    buildCard('Instituições Online', 'assets/aten_online.png'),
-                    buildCard('Instituições Presenciais',
-                        'assets/aten_presencial.png'),
+                    Semantics(
+                      label: "Botão",
+                      child: buildCard(
+                          'Instituições Online', 'assets/aten_online.png'),
+                    ),
+                    Semantics(
+                      label: "Botão",
+                      child: buildCard('Instituições Presenciais',
+                          'assets/aten_presencial.png'),
+                    ),
                     const SizedBox(height: 20),
-                    buildEventCarousel(),
+                    Semantics(
+                      label: "Carrosel dos Eventos sobre Saúde Mental",
+                      child: buildEventCarousel(),
+                    ),
                   ],
                 ),
               ),
