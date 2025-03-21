@@ -5,7 +5,13 @@ void main() {
   runApp(MaterialApp(
     showSemanticsDebugger: false,
     debugShowCheckedModeBanner: false,
-    title: "Home",
+    title: "CAM",
+    theme: ThemeData(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xff49C0DC),
+        foregroundColor: Colors.white,
+      ),
+    ),
     home: HomePage(),
   ));
 }

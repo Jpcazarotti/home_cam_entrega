@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_cam_entrega/menu_drawer.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -15,7 +16,6 @@ class HomePage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: AppBar(
-          backgroundColor: const Color(0xff49C0DC),
           title: Semantics(
             label: "Logo do site Caminhos para um Amanhã Melhor",
             child: Image.asset(
@@ -24,29 +24,20 @@ class HomePage extends StatelessWidget {
             ),
           ),
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Semantics(
-              label: "Botão para ir à tela do seu perfil",
-              child: const Icon(
-                Icons.person_outline,
-                color: Colors.white,
-              ),
-            ),
-          ),
           actions: [
             IconButton(
               onPressed: () {},
               icon: Semantics(
                 label: "Botão para ver as suas notificações",
-                child: const Icon(
-                  Icons.notifications_none_rounded,
-                  color: Colors.white,
-                ),
+                child: const Icon(Icons.notifications_none_rounded),
               ),
             ),
           ],
         ),
+      ),
+      drawer: Semantics(
+        label: "Botão para ir ao menu",
+        child: const MenuDrawer(),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -70,10 +61,12 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30))),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
@@ -87,7 +80,6 @@ class HomePage extends StatelessWidget {
                       child: buildCard('Instituições Presenciais',
                           'assets/aten_presencial.png'),
                     ),
-                    const SizedBox(height: 20),
                     Semantics(
                       label: "Carrosel dos Eventos sobre Saúde Mental",
                       child: buildEventCarousel(),
