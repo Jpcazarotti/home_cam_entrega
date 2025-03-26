@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_cam_entrega/home_page.dart';
 import 'package:home_cam_entrega/meuperfil_page.dart';
-import 'package:home_cam_entrega/noticias&atualizacoes_page.dart';
+import 'package:home_cam_entrega/eventosenoticias_page.dart';
 import 'package:home_cam_entrega/sobreNos_page.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -44,12 +44,12 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.newspaper),
-            title: const Text("Notícias e Atualizações"),
+            title: const Text("Eventos e Notícias da Área"),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const NoticiasAtualizacoes()),
+                    builder: (context) => EventosENoticias()),
               );
             },
           ),
