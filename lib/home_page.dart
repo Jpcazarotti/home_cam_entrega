@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:home_cam_entrega/eventosenoticias_page.dart';
+import 'package:home_cam_entrega/instituicoesonline_page.dart';
+import 'package:home_cam_entrega/instituicoespresenciais_page.dart';
 import 'package:home_cam_entrega/menu_drawer.dart';
+import 'package:home_cam_entrega/notificacoes_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -26,7 +30,14 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificacoesPage(),
+                  ),
+                );
+              },
               icon: Semantics(
                 label: "Botão para ver as suas notificações",
                 child: const Icon(Icons.notifications_none_rounded),
@@ -73,12 +84,34 @@ class HomePage extends StatelessWidget {
                     Semantics(
                       label: "Botão",
                       child: buildCard(
-                          'Instituições Online', 'assets/aten_online.png'),
+                        'Instituições Online',
+                        'assets/aten_online.png',
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const InstituicoesOnlinePage(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     Semantics(
                       label: "Botão",
-                      child: buildCard('Instituições Presenciais',
-                          'assets/aten_presencial.png'),
+                      child: buildCard(
+                        'Instituições Presenciais',
+                        'assets/aten_presencial.png',
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const InstituicoesPresenciaisPage(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     Semantics(
                       label: "Carrosel dos Eventos sobre Saúde Mental",
@@ -94,60 +127,64 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildCard(String title, String imagePath) {
+  Widget buildCard(String title, String imagePath, VoidCallback onTap) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        elevation: 15,
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imagePath),
-                      fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          elevation: 15,
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(imagePath),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          offset: const Offset(0, 3),
+                          blurRadius: 10,
+                        )
+                      ],
                     ),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        offset: const Offset(0, 3),
-                        blurRadius: 10,
-                      )
-                    ],
                   ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.7),
-                    borderRadius: BorderRadius.circular(30),
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 80,
-                  left: 0,
-                  right: 0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(title,
-                          style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white)),
-                    ],
+                  Positioned(
+                    top: 80,
+                    left: 0,
+                    right: 0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(title,
+                            style: const TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white)),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -164,14 +201,24 @@ class HomePage extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                elevation: 10,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(eventImages[index],
-                      width: double.infinity, fit: BoxFit.cover),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EventosENoticias(),
+                    ),
+                  );
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  elevation: 10,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(eventImages[index],
+                        width: double.infinity, fit: BoxFit.cover),
+                  ),
                 ),
               ),
             );
