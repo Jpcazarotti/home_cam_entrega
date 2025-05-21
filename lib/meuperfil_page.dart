@@ -9,7 +9,8 @@ class MeuPerfil extends StatefulWidget {
 }
 
 class _MeuPerfilState extends State<MeuPerfil> {
-  bool isNotificationsEnabled = false;
+  bool isNotificationsEnabled = true;
+  bool isSiteModeLight = true;
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +51,10 @@ class _MeuPerfilState extends State<MeuPerfil> {
               alignment: Alignment.bottomRight,
               children: [
                 const ClipOval(
-                  child: Image(
-                    image: AssetImage('assets/Palestra.png'),
-                    height: 150,
-                    width: 150,
-                    fit: BoxFit.cover,
+                  child: Icon(
+                    Icons.account_circle,
+                    size: 150,
+                    color: Colors.grey,
                   ),
                 ),
                 Positioned(
@@ -74,7 +74,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
           ),
           const SizedBox(height: 10),
           const Text(
-            'Seu Nome',
+            'Nome',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(width: 10),
-                          Text('E-mail: "Seu E-mail"'),
+                          Text('E-mail: "E-mail"'),
                         ],
                       ),
                       SizedBox(height: 20),
@@ -138,7 +138,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(width: 10),
-                          Text('Data de Nascimento: "Sua Data/de/Nascimento"'),
+                          Text('Data de Nascimento: "Dia/Mês/Ano"'),
                         ],
                       ),
                       SizedBox(height: 20),
@@ -196,20 +196,20 @@ class _MeuPerfilState extends State<MeuPerfil> {
                           const SizedBox(width: 10),
                           const Text('Modo do Site'),
                           Checkbox(
-                            value: isNotificationsEnabled,
+                            value: isSiteModeLight,
                             onChanged: (bool? value) {
                               setState(() {
-                                isNotificationsEnabled = value!;
+                                isSiteModeLight = value!;
                               });
                             },
                           ),
                           const Text('Claro'),
                           const SizedBox(width: 20),
                           Checkbox(
-                            value: !isNotificationsEnabled,
+                            value: !isSiteModeLight,
                             onChanged: (bool? value) {
                               setState(() {
-                                isNotificationsEnabled = !value!;
+                                isSiteModeLight = !value!;
                               });
                             },
                           ),
@@ -222,7 +222,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                 const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    'Apagar Minha Conta',
+                    'Excluir Minha Conta',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
