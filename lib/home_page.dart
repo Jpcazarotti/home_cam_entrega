@@ -191,13 +191,18 @@ class HomePage extends StatelessWidget {
   }
 
   Widget buildEventCarousel() {
+    final PageController pageController = PageController(
+    viewportFraction: 0.8,
+    initialPage: eventImages.length ~/ 2, // Define o índice inicial como o do meio
+  );
+
     return Padding(
       padding: const EdgeInsets.all(10),
       child: SizedBox(
         height: 250,
         child: PageView.builder(
           itemCount: eventImages.length,
-          controller: PageController(viewportFraction: 0.8),
+          controller: pageController,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),

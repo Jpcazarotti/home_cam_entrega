@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_cam_entrega/menu_drawer.dart';
+import 'package:home_cam_entrega/notificacoes_page.dart';
 
 class EventosENoticias extends StatelessWidget {
   EventosENoticias({super.key});
@@ -26,7 +27,7 @@ class EventosENoticias extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(110),
+        preferredSize: const Size.fromHeight(120),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -43,7 +44,14 @@ class EventosENoticias extends StatelessWidget {
                 centerTitle: true,
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificacoesPage(),
+                        ),
+                      );
+                    },
                     icon: Semantics(
                       label: "Botão para ver as suas notificações",
                       child: const Icon(Icons.notifications_none_rounded),
